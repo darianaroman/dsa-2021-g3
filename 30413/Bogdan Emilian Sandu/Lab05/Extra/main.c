@@ -27,6 +27,7 @@ StackN *createSN(NodeT *m)
     if(p==NULL) exit(1);
     p->tn=m;
     p->next=NULL;
+    return p;
 }
 
 NodeT *createNode(char *c)
@@ -47,6 +48,7 @@ StackT *createEmptyS()
     p->bottom=NULL;
     p->top=NULL;
     p->nr=0;
+    return p;
 }
 void pushS(StackT *stackPtr,NodeT *p)
 {
