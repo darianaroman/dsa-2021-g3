@@ -1,0 +1,171 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct bst_node
+{
+    char nr;
+    struct bst_node *left,*right;
+
+
+}BSTNodeT;
+int roman(char a)
+{
+    if(a=='M')
+        return 1000;
+    if(a=='D')
+        return 500;
+    if(a=='C')
+        return 100;
+    if(a=='L')
+        return 50;
+    if(a=='X')
+        return 10;
+    if(a=='V')
+        return 5;
+    if(a=='I')
+        return 1;
+
+    return 0;
+
+}
+BSTNodeT *recInsert(BSTNodeT *root, char key,FILE *g)
+{
+    BSTNodeT *p;
+    if(root==NULL)
+    {
+        p = (BSTNodeT*)malloc(sizeof(BSTNodeT));
+        p->nr=key;
+        p->left=p->right=NULL;
+        root=p;
+        return root;
+    }
+    else
+    {
+        if(roman(key)<roman(root->nr))
+            root->left=recInsert(root->left,key,g);
+        else
+        {
+            if(roman(key)>roman(root->nr))
+                root->right=recInsert(root->right,key,g);
+
+            else
+            {
+                fprintf(g,"\n Node of key %c already exists",key);
+            }
+        }
+    }
+    return root;
+}
+BSTNodeT *findMin(BSTNodeT *node)
+{
+    if(node == NULL)
+    {
+
+    return NULL;
+    }
+    if(node->left)
+    return findMin(node->left);
+    else
+    return node;
+}
+BSTNodeT *findMax(BSTNodeT *node)
+{
+    if(node == NULL)
+    {
+
+        return NULL;
+    }
+    if(node->right)
+    return findMax(node->right);
+    else
+    return node;
+}
+
+BSTNodeT *find(BSTNodeT *root, char givenKey)
+{
+    if(root == NULL) return NULL;
+    BSTNodeT *p;
+    for(p=root;p != NULL;)
+    {
+        if(roman(givenKey)==roman(p->nr))
+        return p;
+        else
+        {
+
+
+            if(roman(givenKey)<roman(p->nr))
+                p=p->left;
+            else
+                p=p->right;
+        }
+    }
+return NULL;
+
+}
+BSTNodeT * delNode(BSTNodeT* root, char key,FILE *g)
+{
+
+    if(root==NULL)
+    {
+        fprintf(g,"\nNOT FOUND");
+    }
+    else if(roman(key)<roman(root->nr))
+    {
+        root->left=delNode(root->left,key,g);
+    }
+    else if(roman(key)>roman(root->nr))
+    {
+        root->right=delNode(root->right,key,g);
+    }
+    else
+    {
+        if(root->right && root->left)
+        {
+            BSTNodeT *temp = findMin(root->right);
+            root->nr=temp->nr;
+            root->right=delNode(root->right,temp->nr,g);
+        }
+        else
+        {
+            BSTNodeT *temp=root;
+            if(root->left==NULL)
+                root=root->right;
+            else if(root->right==NULL)
+                root=root->left;
+            free(temp);
+        }
+    }
+    return root;
+
+}
+
+void preorder(BSTNodeT*p, FILE *g)
+{
+    if(p != NULL)
+    {
+        fprintf(g," %c ",p->nr);
+        preorder(p->left,g);
+        preorder(p->right,g);
+    }
+
+}
+void inorder(BSTNodeT *p,FILE *g)
+{
+    if(p != NULL)
+    {
+        inorder(p->left,g);
+        fprintf(g," %c ",p->nr);
+        inorder(p->right,g);
+    }
+
+}
+void postorder (BSTNodeT *p,FILE *g)
+{
+    if(p != NULL)
+    {
+        postorder(p->left,g);
+        postorder(p->right,g);
+        fprintf(g," %c ",p->nr);
+
+    }
+
+}
