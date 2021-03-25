@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <ctype.h>
 typedef struct node
 {
-    char exp;
+    char exp[30];
     struct node *left, *right;
 }NodeT;
 typedef struct stackN
@@ -29,12 +30,12 @@ StackN *createSN(NodeT *m)
     return p;
 }
 
-NodeT *createNode(char c)
+NodeT *createNode(char *c)
 {
     NodeT *p;
     p=(NodeT*)malloc(sizeof(NodeT));
     if(p==NULL) exit(1);
-    p->exp=c;
+    strcpy(p->exp,c);
     p->left=NULL;
     p->right=NULL;
     return p;
@@ -75,37 +76,61 @@ StackN *popS(StackT *stackPtr)
         stackPtr->top=stackPtr->top->next;
     return p;
 }
-bool isOp(char c)
+bool isOp(char *c)//verifica daca e operator
 {
-    if(c=='+' || c=='-' || c=='*' || c=='/') return true;
+    if((c[0]=='+' || c[0]=='-' || c[0]=='*' || c[0]=='/') && isdigit(c[1])==0) return true;
     else return false;
+}
+char *revereS(char *s)//reverseaza ordinea cuvintelor
+{
+    char *p;
+    int len=strlen(s);
+    char v1[100];
+    char *v;
+    v=(char*)malloc(100*sizeof(char));
+    strcpy(v,"");
+    p=strtok(s," ");
+    while(p!=NULL)
+    {
+        strcpy(v1,p);
+        strcat(v1," ");
+        strcat(v1,v);
+        strcpy(v,v1);
+        p=strtok(NULL," ");
+    }
+    v[len]='\0';
+    return v;
 }
 NodeT *createTree(char *s)
 {
     NodeT *root,*nd;
     StackT *stackPtr=createEmptyS();
     StackN *m,*n;
-    for(int i=0;i<strlen(s);i++)
+    char *word,revS[100];
+    strcpy(revS,revereS(s));
+    word=strtok(revS," ");
+    while(word!=NULL)
     {
-        //printf("%i %d\n",i,strlen(s));
-        if(isOp(s[i])==false)
+        if(isOp(word)==false)
     {
-        nd=createNode(s[i]);
+        nd=createNode(word);
         pushS(stackPtr,nd);
     }
     else
     {
         m=popS(stackPtr);
         n=popS(stackPtr);
-        nd=createNode(s[i]);
+        nd=createNode(word);
         nd->left=n->tn;
         nd->right=m->tn;
         pushS(stackPtr,nd);
-        if(i==strlen(s)-1) root=nd;
         free(m);
         free(n);
     }
+    word=strtok(NULL," ");
     }
+    root=nd;
+    free(stackPtr);
     return root;
 }
 void postfix(NodeT *root)
@@ -113,12 +138,12 @@ void postfix(NodeT *root)
     if(root==NULL) return;
     postfix(root->left);
     postfix(root->right);
-    printf("%c ",root->exp);
+    printf("%s ",root->exp);
 }
 void prefix(NodeT *root)
 {
     if(root==NULL) return;
-    printf("%c ",root->exp);
+    printf("%s ",root->exp);
     prefix(root->left);
     prefix(root->right);
 }
@@ -126,17 +151,31 @@ void inorder(NodeT *root)
 {
     if(root==NULL) return;
     inorder(root->left);
-    printf("%c ",root->exp);
+    printf("%s ",root->exp);
     inorder(root->right);
 }
+void delTree(NodeT *root)
+{
+    if(root!=NULL)
+    {
+        delTree(root->left);
+        delTree(root->right);
+        free(root);
+    }
+
+}
+
 int main()
 {
-    char s[20];
+    char s[105];
     NodeT *root;
-    scanf("%s",s);
+    scanf("%[^\n]",s);
     root=createTree(s);
     postfix(root);
     printf("\n");
     inorder(root);
+    printf("\n");
+    prefix(root);
+    delTree(root);
     return 0;
 }

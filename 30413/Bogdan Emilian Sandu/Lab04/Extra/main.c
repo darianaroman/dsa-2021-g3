@@ -4,20 +4,30 @@ typedef struct node
 {
     int time;
     struct node *left,*right;
-}NodeT;
-
+} NodeT;
+typedef struct info
+{
+    int sum;
+    int count;
+} Info;
 NodeT *manager;//variabila globala
 NodeT *createBinTree();
 float highestTenure(NodeT *root,int *nr);
 NodeT *highestTenureM(NodeT *root,float *maxi);
 NodeT *highestTenureFinal(NodeT *root);
+Info highT(NodeT *root);
+
+float maxTenure = 0.0;
+NodeT *maxNode=NULL;
 
 int main()
 {
     NodeT *root=createBinTree();
     NodeT *manager;
-    manager=highestTenureFinal(root);
-    printf("%p %d",manager, manager->time);
+    highT(root);
+    printf("%p %d",maxNode, maxNode->time);
+    //manager=highestTenureFinal(root);
+    //printf("%p %d",manager, manager->time);
     return 0;
 }
 
@@ -37,10 +47,10 @@ NodeT *highestTenureM(NodeT *root,float *maxi)//parcurge nodurile si calculeaza 
     sum=highestTenure(root,&nr);
     sum=sum/nr;
     if(sum>(*maxi))
-        {
-            *maxi=sum;
-            manager=root;
-        }
+    {
+        *maxi=sum;
+        manager=root;
+    }
     highestTenureM(root->left,maxi);
     highestTenureM(root->right,maxi);
     return manager;
@@ -63,4 +73,35 @@ NodeT *createBinTree()
     p->left=createBinTree();
     p->right=createBinTree();
     return p;
+}
+///incercare sugestie
+//ma folosesc de 2 variabile globale maxNode(managerul) si maxTenure (media maxima)
+//am creat o structura ce contine informatii despre apelarile recursive din postorder traversal
+Info highT(NodeT *root)
+{
+    Info leftInfo,rightInfo,inf;
+    inf.count=0;
+    inf.sum=0;
+    if(root==NULL) return inf;
+    int totalSum=root->time;
+    int nr=1;
+    if(root->left==NULL && root->right==NULL)
+    {
+        inf.count=inf.count+1;
+        inf.sum=inf.sum+root->time;
+        return inf;
+    }
+    leftInfo=highT(root->left);
+    rightInfo=highT(root->right);
+    totalSum=totalSum+leftInfo.sum+rightInfo.sum;
+    nr=nr+leftInfo.count+rightInfo.count;
+    float avg=totalSum/nr;
+    if(avg>maxTenure)
+    {
+        maxNode=root;
+        maxTenure=avg;
+    }
+    inf.sum=totalSum;
+    inf.count=nr;
+    return inf;
 }
