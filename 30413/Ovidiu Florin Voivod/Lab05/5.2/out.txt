@@ -1,0 +1,10 @@
+inorder:A C D F J N W 
+postorder:C A J W N F D 
+preorder:D A C F W J 
+Minimum node is A
+Maximum node is W
+Key F found
+Key Z not found
+preorder:F A C W J 
+postorder:C A J W F 
+inorder:A C F J W 
