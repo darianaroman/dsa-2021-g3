@@ -34,6 +34,12 @@ Deadline until 17.03.2021, 20:00 for making a PR on GitHub with the mandatory pr
 Solve problem 5.2.
 Deadline until 24.03.2021, 20:00 for making a PR on GitHub with the mandatory problems and extra assignment if you finished the mandatory problems.
 
+### Lab06 Hash Tables
+
+Solve problem 6.3.1.
+Deadline until 31.03.2021, 20:00 for making a PR on GitHub with the mandatory problem.
+
+
 ## Grading
 
 There will be 2 laboratory tests, one about Data Structures and one about Algorithms.

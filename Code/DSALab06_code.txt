@@ -1,0 +1,73 @@
+//----- Listing.6.1 --- Code part 01 ----------------------
+// A simple hash function.}
+#define B ? /* ? stands for a suitable value for B, the size of the bucket table */
+int f(char *key)
+{
+  int i, sum;
+  sum = 0;
+  for (i = 0; i < strlen key); i++)
+    sum += key[ i ];
+  return(sum % B);
+}
+//----- Listing.6.2 --- Code part 02 ----------------------
+// A possible bucket record and bucket table declaration.}
+typedef struct cell
+{
+  char key[60];  
+  /* other useful info */
+  struct cell *next;
+} NodeT;
+
+NodeT *BucketTable[B];
+//----- Listing.6.3 --- Code part 03 ----------------------
+// Initializind the table to empty.}
+for (int i = 0; i < B; i++)
+  BucketTable[i] = NULL;
+//----- Listing.6.4 --- Code part 04 ----------------------
+// Looking for a string key in a hash table.}
+p = BucketTable[ h ];
+while (p != NULL)
+{
+  if (strcmp(key, p->key) == 0) 
+    return p;
+  p = p->next;
+}
+return NULL; /* not found */
+//----- Listing.6.5 --- Code part 05 ----------------------
+// Steps in inserting a new record in a hash table.}
+p = (NodeT *) malloc(sizeof(NodeT)); 
+if (p)
+{
+	fillNode(p);
+	h = f(p->key);
+	if (BucketTable[ h ] == NULL)
+	{ // empty slot
+		 BucketTable[ h ] = p;
+		  p->next = NULL;
+	}
+}
+else
+// suitable message for no memory error
+//----- Listing.6.-1 --- Code part 06 ----------------------
+// }
+q = find(p->key);
+if (q == 0)
+{ /* not found. Insert it */
+  p -> next = BucketTable[ h ];
+  Buckettable[ h ] = p;
+}
+else /* double key */
+  processRec(p, q);
+//----- Listing.6.6 --- Code part 07 ----------------------
+// Listing the contents of a hash table.}
+for (i = 0; i < B; i++)
+  if (BucketTable[ i ] != NULL)
+  {
+    printf("Bucket for hash value %d\n", i);
+    p =BucketTable[ i ];
+    while (p != NULL)
+    {
+      showNode(p);
+      p = p->next;
+    }
+  }
