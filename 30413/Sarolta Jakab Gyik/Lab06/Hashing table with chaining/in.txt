@@ -1,0 +1,15 @@
+i Jakab Sarolta
+i Nagy Leviii
+i Gyik Dorottya
+i Bogdan Agnes
+f Nagy Leviii
+d Gyik Dorottya
+d Bogdan Agnes
+l
+i Goga Catalin
+f Goga Catalin
+l
+f Jakab Sarolta
+l
+d Goga Catalin
+l
