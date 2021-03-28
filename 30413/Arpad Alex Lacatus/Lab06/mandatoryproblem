@@ -1,0 +1,186 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define B 5
+int f(char *key)
+{
+int sum, len;
+sum = 0;
+len= strlen(key);
+    int i;
+    for(i = 0;i< len;i++)
+    sum += key[i];
+return (sum%B);
+}
+
+
+typedef struct cell {
+    char key[60];
+    struct cell *next;
+} NodeT;
+
+NodeT *BucketTable[B];
+
+int insert(char *key)
+{
+
+    NodeT *p = (NodeT*) malloc(sizeof(NodeT));
+    int h;
+    NodeT *t = (NodeT*) malloc(sizeof(NodeT));
+    if(p)
+    {
+        strcpy(p->key,key);
+        p->next=NULL;
+        h=f(p->key);
+        if(BucketTable[h ] == NULL)
+        {
+            BucketTable[h ] =p;
+            p->next= NULL;
+        }
+        else
+        {
+            t=BucketTable[h ];
+            while(t->next!=NULL)
+            {
+                t=t->next;
+            }
+            t->next=p;
+
+        }
+        return 1;
+    }
+    else
+        return 0;
+
+
+}
+
+
+void find(char *key,FILE *g)
+{
+
+
+    int h=f(key);
+    int k=0;
+    NodeT *p = BucketTable[h];
+    while(p != NULL)
+    {
+        if(strcmp(key,p->key) == 0)
+        {
+            fprintf(g,"yes\n");
+            k=1;
+        }
+
+        p=p->next;
+    }
+    if(k==0)
+    {
+
+
+    fprintf(g,"no\n");
+    }
+}
+
+
+
+
+void afis(FILE *g)
+{
+
+
+    int i;
+    for(i = 0;i<B;i++)
+        if(BucketTable[i ] != NULL)
+        {
+            fprintf(g,"Bucket for hash value%d\n",i);
+            NodeT *p=BucketTable[i];
+            while(p != NULL)
+            {
+                fprintf(g,"%s",p->key);
+                p=p->next;
+            }
+            fprintf(g,"\n");
+        }
+}
+
+
+int deletenode(char *key)
+{
+
+
+    int h=f(key);
+    NodeT *p = BucketTable[h];
+    if(p==NULL)
+        return 0;
+    NodeT *q =p->next;
+    if(strcmp(key,p->key) == 0)
+    {
+        BucketTable[h]=p->next;
+        free(p);
+        return 0;
+    }
+    while(q != NULL)
+    {
+        if(strcmp(key,q->key) == 0)
+        {
+            p->next=q->next;
+            free(q);
+            return 0;
+
+        }
+
+        p=p->next;
+        q=p->next;
+
+
+    }
+
+    return 1;
+
+}
+
+
+
+
+
+
+
+
+
+int main(int argc, char ** argv)
+{
+    FILE *f=fopen(argv[1],"r");
+    FILE *g=fopen(argv[2],"w");
+
+
+    int i;
+    for(i = 0;i<B;i++)
+    BucketTable[i] = NULL;
+    char *com=(char *)malloc(50*sizeof(char));
+    while(fscanf(f,"%s",com)==1)
+    {
+        if(com[0]=='i')
+        {
+            insert(com+1);
+        }
+        if(com[0]=='d')
+        {
+            deletenode(com+1);
+        }
+        if(com[0]=='f')
+        {
+            find(com+1,g);
+        }
+        if(com[0]=='l')
+        {
+            afis(g);
+        }
+
+    }
+
+
+
+
+    return 0;
+}
