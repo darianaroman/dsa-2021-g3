@@ -55,9 +55,7 @@ NodeT* searchByKey(NodeT *BucketTable[], char* key)
 
 void deleteNode(NodeT* BucketTable[], NodeT *p, FILE* g)
 {
-    NodeT *q = (NodeT *) malloc(sizeof(NodeT));
-    q = searchByKey(BucketTable, p->key);
-    if(q == 0)
+    if(p == 0)
         fprintf(g, "\nThe %s node is not in the hash table\n", p->key);
     else
     {

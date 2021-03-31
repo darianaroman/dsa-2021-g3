@@ -6,10 +6,10 @@ f Nagy Leviii
 d Gyik Dorottya
 d Bogdan Agnes
 l
-i Goga Catalin
-f Goga Catalin
+i Octavian Goga
+f Octavian Goga
 l
 f Jakab Sarolta
 l
-d Goga Catalin
+d Octavian Goga
 l
