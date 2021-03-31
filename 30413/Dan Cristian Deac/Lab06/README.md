@@ -1,5 +1,5 @@
-# Lab X
+# Lab 06
 
-> Edit this file and describe in a few words what you've done in this lab.
+> the code works but have to work on reading from file, i will upload an update during this week
 
 
