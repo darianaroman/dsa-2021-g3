@@ -1,0 +1,131 @@
+//----- Listing.7.1 --- Code part 01 ----------------------
+// A breadth-first search implementation for a graph
+enum { UNVISITED, VISITED };
+void bfs(int nbOfNodes, int srcNode)
+{
+    int mark[nbOfNodes]; /* for marking visited nodes */
+     int w; /* node */
+    
+    QueueT Q = createEmptyQueue(); /* queue of nodes - integers */
+    for (int i = 0; i < nbOfNodes; i++) /* mark all nodes unvisited */
+        mark[i] = UNVISITED;
+    mark[srcNode] = VISITED; /* mark source node visited */
+    process info for srcNode;
+    enqueue(Q, srcNode);
+    /* srcNode will be the first node dequeued in the loop below */
+    while(! empty(Q))
+    {
+        int v = dequeue(Q);
+        for (each node w adjacent to v)
+            if (mark[w] == UNVISITED)
+            {
+                mark[w] = VISITED;
+                process info for w;
+                enqueue(Q, w);
+            }
+    }
+}
+//----- Listing.7.2 --- Code part 02 ----------------------
+// A depth-first search implementation for a graph
+enum { UNVISITED, VISITED };
+void dfs(int nbOfNodes, int srcNode)
+{
+    int mark[nbOfNodes]; /* for marking visited nodes */
+    int w; /* node */
+
+    StackT S = createEmptyStack(); /* stack of nodes */
+
+    for (int i = 0; i < nbOfNodes; i++) /* mark source node visited */
+        mark[i] = UNVISITED;
+    mark[srcNode] = VISITED; /* mark source node visited */
+    
+    /* process info for srcNode; */
+    process(srcNode);
+
+    push(S, srcNode); 
+    while (!empty(S))
+    {
+        int v = top(S);
+        let w be the next unvisited node on AdjList(v); 
+        if (w exists)
+        { 
+            mark[w] = VISITED;
+            process info for w;
+            push(S, w); 
+        }
+        else 
+            pop(S);
+}
+//----- Listing.7.3 --- Code part 03 ----------------------
+// An implementation fo Dijkstra's algorithm.
+#define NMAX ? /* max no. of nodes */
+#define INFTY ? /* big value for infinity */
+double dist[NMAX]; /* distances */
+double cost[NMAX][NMAX];
+int parent[NMAX];
+int S[NMAX];
+
+/* nbOfNodes = number of nodes in the graph
+   source = source node id */
+void Dijkstra(int nbOfNodes, int source)
+{
+    int k;
+    /* initialize */
+    for (int i = 1; i <= n; i++)
+    {
+        S[i] = 0; /* set S empty */
+        dist[i] = cost[source][i];
+        if (dist[i] < INFTY)     parent[i] = source;
+        else                     parent[i] = 0;
+    }
+    /* add source to set S */
+    S[source] = 1;
+    parent[source] = 0;
+    dist[source] = 0;
+    /* build vectors dist and parent */
+    for (int step = 1; step <= n-1; step++)
+    {
+        find unselected vertex $k$ with dist[$k$] minimal;
+        if (minimum found == INFTY) return;
+        S[k] = 1; /* add k to set S */
+        for (int j = 1; j <= n; j++)
+            if (S[j] == 0 && dist[k] + cost[k][j] < dist[j])
+            {
+                dist[j] = dist[k] + cost[k][j];
+                parent[j] = k;
+            }
+    }
+} 
+//----- Listing.7.4 --- Code part 04 ----------------------
+// An implementation of Floyd's algorithm for all pairs shortest paths problem.
+#define NMAX ? /* max no. of nodes */
+double cost[NMAX][NMAX];
+double A[NMAX][NMAX];
+
+void Floyd(int nbOfNodes)
+{
+    /* initialize A */
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            A[i][j] = cost[i][j];
+    for (int i = 0; i < n; i++)
+        A[i][i] = 0;
+    for (int k = 0; k < n; k++)     /* all nodes */
+        for (int i = 0; i < n; i++) /* all rows */
+            for (int j = 0; j < n; j++) /* all columns */
+                if (A[i][k] + A[k][j] < A[i][j])
+                    A[i][j] = A[i][k] + A[k][j];
+}
+//----- Listing.7.5 --- Code part 05 ----------------------
+// Listing the vertices along the path.}
+void path(int i, int j)
+{
+    int k;
+    k = p[i][j];
+    if (k != 0)
+    {
+        path(i, k);
+        list node k;
+        path(k, j);
+    }
+}

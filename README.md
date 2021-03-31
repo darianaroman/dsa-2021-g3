@@ -39,6 +39,10 @@ Deadline until 24.03.2021, 20:00 for making a PR on GitHub with the mandatory pr
 Solve problem 6.3.1.
 Deadline until 31.03.2021, 20:00 for making a PR on GitHub with the mandatory problem.
 
+### Lab07 Graphs
+
+Prepare for the partial exam.
+Deadline until 07.04.2021 for making a PR on GitHub with the extra problem.
 
 ## Grading
 
