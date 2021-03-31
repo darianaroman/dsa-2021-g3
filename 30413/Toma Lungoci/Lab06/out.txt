@@ -1,0 +1,13 @@
+already in the table
+Bucket for has value 0:
+toma3 
+Bucket for has value 1:
+amot toma 
+Bucket for has value 2:
+toma1 
+Bucket for has value 3:
+toma2 
+Bucket for has value 0:
+toma3 
+Bucket for has value 1:
+amot toma 
