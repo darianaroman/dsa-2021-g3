@@ -1,5 +1,4 @@
-# Lab X
+Lab 06
 
-> Edit this file and describe in a few words what you've done in this lab.
-
+> attended the lab
 
