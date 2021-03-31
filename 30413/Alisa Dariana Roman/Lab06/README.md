@@ -1,5 +1,5 @@
-# Lab X
+# Lab 6
 
-> Edit this file and describe in a few words what you've done in this lab.
+> we were introduced to hash tables, learned how to implement them for the most part, then we recieved good advice about programming in general
 
 
