@@ -1,97 +1,149 @@
 #include <stdio.h>
 #include <stdlib.h>
-//----- Listing.6.1 --- Code part 01 ----------------------
-// A simple hash function.}
-#define B ? /* ? stands for a suitable value for B, the size of the bucket table */
-int f(char *key)
-{
-  int i, sum;
-  sum = 0;
-  for (i = 0; i < strlen key); i++)
-    sum += key[ i ];
-  return(sum % B);
-}
-//----- Listing.6.2 --- Code part 02 ----------------------
-// A possible bucket record and bucket table declaration.}
+#include <string.h>
+#define B 4
+
 typedef struct cell
 {
-  char key[60];
-  /* other useful info */
-  struct cell *next;
-} NodeT;
+    char key[60];
+    struct cell *next;
+}NodeT;
 
-NodeT *BucketTable[B];
-//----- Listing.6.3 --- Code part 03 ----------------------
-// Initializind the table to empty.}
-for (int i = 0; i < B; i++)
-  BucketTable[i] = NULL;
-//----- Listing.6.4 --- Code part 04 ----------------------
-// Looking for a string key in a hash table.}
-p = BucketTable[ h ];
-while (p != NULL)
+int hashFunction(char *key)
 {
-  if (strcmp(key, p->key) == 0)
-    return p;
-  p = p->next;
+    int sum = 0;
+    for(int i = 0; i < strlen(key); i++)
+        sum = sum + key[i];
+    return (sum % B);
 }
-return NULL; /* not found */
-//----- Listing.6.5 --- Code part 05 ----------------------
-// Steps in inserting a new record in a hash table.}
-p = (NodeT *) malloc(sizeof(NodeT));
-if (p)
+
+
+NodeT *createCell(char *key)
 {
-	fillNode(p);
-	h = f(p->key);
-	if (BucketTable[ h ] == NULL)
-	{ // empty slot
-		 BucketTable[ h ] = p;
-		  p->next = NULL;
-	}
-}
-else
-// suitable message for no memory error
-//----- Listing.6.-1 --- Code part 06 ----------------------
-// }
-q = find(p->key);
-if (q == 0)
-{ /* not found. Insert it */
-  p -> next = BucketTable[ h ];
-  Buckettable[ h ] = p;
-}
-else /* double key */
-  processRec(p, q);
-//----- Listing.6.6 --- Code part 07 ----------------------
-// Listing the contents of a hash table.}
-for (i = 0; i < B; i++)
-  if (BucketTable[ i ] != NULL)
-  {
-    printf("Bucket for hash value %d\n", i);
-    p =BucketTable[ i ];
-    while (p != NULL)
+    NodeT *p = malloc(sizeof(NodeT));
+    if(p)
     {
-      showNode(p);
-      p = p->next;
+        strcpy(p->key, key);
+        p->next = NULL;
+        return p;
     }
-  }
-int main()
+    return NULL;
+}
+
+NodeT *find(char *key, NodeT *BucketTable[])
 {
-    FILE *in_file = fopen("data.in", "r");
-    FILE *out_file = fopen("data.out", "w");
-    char letter_1,letter_2;
-    while(!feof(in_file))
+    int hK = hashFunction(key);
+    NodeT *p;
+    p = BucketTable[hK];
+    while(p != NULL)
     {
-        fscanf(in_file, "%c %c", &letter_1, &letter_2);
-        switch(letter_1)
+        if(strcmp(key, p->key) == 0)
+            return p;
+        p = p->next;
+    }
+    return NULL;
+}
+
+void insertInTable(char *key, NodeT *BucketTable[], FILE *out_file)
+{
+    NodeT *p = createCell(key);
+    int h = hashFunction(p->key);
+    if(BucketTable[h] == NULL)
+    {
+        BucketTable[h] = p;
+        return;
+    }
+    NodeT *q = find(p->key, BucketTable);
+    if(q == NULL)
+    {
+        p->next = BucketTable[h];
+        BucketTable[h] = p;
+    }
+    else
+    {
+        fprintf(out_file, "already exists\n");
+    }
+}
+
+void print(NodeT *BucketTable[], FILE *out_file)
+{
+    int i;
+    for(i = 0; i < B; i++)
+        if(BucketTable[i] != NULL)
         {
-            case 'i':
-                insertNode(root, letter_2);
-                break;
-            case 'd':
-                delNode(find(root, letter_2), letter_2);
-                break;
-            case 'f':
-                find(root, letter_2);
-                break;
+            fprintf(out_file, "%d", i);
+            NodeT *p;
+            p = BucketTable[i];
+            while(p != NULL)
+            {
+                fprintf(out_file, "%s", p->key);
+                p = p->next;
+            }
+            fprintf(out_file, "\n");
+        }
+}
+
+void deleteName (NodeT *BucketTable[], char *key)
+{
+    int hF = hashFunction(key);
+    NodeT *p = BucketTable[hF];
+    NodeT *q = NULL;
+    while(p != NULL)
+    {
+        if(strcmp(p->key, key) == 0)
+            break;
+        q = p;
+        p = p->next;
+    }
+    if(q == NULL)
+    {
+        BucketTable[hF] = p->next;
+        free(p);
+    }
+    else
+    {
+        if(p->next == NULL)
+        {
+            q->next = NULL;
+            free(p);
+        }
+        else
+        {
+           q->next = p->next;
+           free(p);
+        }
+    }
+}
+
+int main(int argc, char *argv[])
+{
+    NodeT *BucketTable[B];
+    for(int i = 0; i < B; i++)
+        BucketTable[i] = NULL;
+
+    for(int i = 1; i < argc; i++)
+    {
+        printf("%s \n", argv[i]);
+    }
+    FILE *in_file = fopen(argv[1], "r");
+    FILE *out_file = fopen(argv[2], "w");
+    char txt[60];
+    while (fscanf(in_file, "%s", txt) != EOF)
+    {
+        if(txt[0] == 'i')
+        {
+            insertInTable(txt + 1, BucketTable, out_file);
+        }
+        else
+            if(txt[0] == 'd')
+            {
+                deleteName(BucketTable, txt + 1);
+            }
+            else
+                if(txt[0] == 'l')
+                {
+                    print(BucketTable, out_file);
+                }
     }
     fclose(in_file);
     fclose(out_file);
