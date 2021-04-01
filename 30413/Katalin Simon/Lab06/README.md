@@ -1,5 +1,6 @@
-# Lab X
+Lab 06
 
-> Edit this file and describe in a few words what you've done in this lab.
-
+> attended the lab
+>added a project, but can not proceed due to unknown error
+>comments in code
 
