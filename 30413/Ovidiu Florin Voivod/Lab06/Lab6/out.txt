@@ -1,0 +1,22 @@
+
+Bucket for hash value 14: Vali the Storm
+
+Bucket for hash value 15: Mihai Neagoi
+
+Bucket for hash value 36: Michael Jackson
+
+Bucket for hash value 37: Ovidiu Voivod
+
+Mihai Neagoi found at table index 15
+
+Command Unknown for Andrei Mihai
+
+Ovidiu Voivod found at table index 37
+
+Mircea Mare not found!
+
+Bucket for hash value 14: Vali the Storm
+
+Bucket for hash value 15: Mihai Neagoi
+
+Bucket for hash value 37: Ovidiu Voivod
