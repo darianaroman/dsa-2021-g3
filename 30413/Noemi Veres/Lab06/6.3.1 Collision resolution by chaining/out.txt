@@ -1,0 +1,57 @@
+Bucket for hash value 4: HannahAbbott
+ Bucket for hash value 5: SusanBones
+ Bucket for hash value 7: KatieBell
+ Bucket for hash value 0: NevilleLongbottom
+ Bucket for hash value 1: LunaLovegood
+ Bucket for hash value 3: HermioneGranger
+ ParvatiPatil
+ Bucket for hash value 4: HannahAbbott
+ AngelinaJohnson
+ LeeJordan
+ Bucket for hash value 5: SusanBones
+ LuciusMalfoy
+ Bucket for hash value 6: HarryPotter
+ Bucket for hash value 7: KatieBell
+ GinnyWeasley
+ GregoryGoyle
+ LavenderBrown
+ MillicentBulstrode
+ Bucket for hash value 8: RonaldWeasley
+ TerryBoot
+ Bucket for hash value 9: PadmaPatil
+ yes7
+no
+Bucket for hash value 0: NevilleLongbottom
+ Bucket for hash value 1: LunaLovegood
+ Bucket for hash value 3: HermioneGranger
+ ParvatiPatil
+ Bucket for hash value 4: HannahAbbott
+ AngelinaJohnson
+ LeeJordan
+ Bucket for hash value 5: SusanBones
+ LuciusMalfoy
+ Bucket for hash value 6: HarryPotter
+ Bucket for hash value 7: GinnyWeasley
+ GregoryGoyle
+ LavenderBrown
+ MillicentBulstrode
+ Bucket for hash value 8: RonaldWeasley
+ TerryBoot
+ Bucket for hash value 9: PadmaPatil
+ Bucket for hash value 0: NevilleLongbottom
+ Bucket for hash value 1: LunaLovegood
+ Bucket for hash value 3: HermioneGranger
+ ParvatiPatil
+ Bucket for hash value 4: HannahAbbott
+ LeeJordan
+ Bucket for hash value 5: SusanBones
+ LuciusMalfoy
+ Bucket for hash value 6: HarryPotter
+ Bucket for hash value 7: GinnyWeasley
+ GregoryGoyle
+ LavenderBrown
+ MillicentBulstrode
+ Bucket for hash value 8: RonaldWeasley
+ TerryBoot
+ Bucket for hash value 9: PadmaPatil
+ 
