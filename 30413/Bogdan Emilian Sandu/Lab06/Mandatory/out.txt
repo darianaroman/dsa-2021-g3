@@ -1,0 +1,43 @@
+Bucket for has value 1
+Codrut 
+Bucket for has value 4
+Alex 
+Bucket for has value 15
+Bogdan 
+Bucket for has value 20
+Mihai 
+
+---
+Bucket for has value 1
+Codrut 
+Bucket for has value 4
+Alex 
+Bucket for has value 15
+Bogdan 
+
+---
+Not found
+Found Bogdan
+Bucket for has value 1
+Codrut 
+Bucket for has value 4
+Alex 
+Bucket for has value 11
+Padure 
+Bucket for has value 15
+Bogdan 
+Bucket for has value 22
+Maria 
+
+---
+Bucket for has value 1
+Codrut 
+Bucket for has value 4
+Alex 
+Bucket for has value 11
+Padure 
+Bucket for has value 22
+Maria 
+
+---
+Not found
