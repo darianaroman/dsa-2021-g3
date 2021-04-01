@@ -1,5 +1,10 @@
-# Lab X
+# Lab 06
 
-> Edit this file and describe in a few words what you've done in this lab.
+Talked about hash tables and different methods of hashing.
++some real life usage(bitcoin and stuff)
+
+problem: i used a sum of ascii code modulo 4 for the hash function
+
+
 
 
