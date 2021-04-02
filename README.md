@@ -44,6 +44,15 @@ Deadline until 31.03.2021, 20:00 for making a PR on GitHub with the mandatory pr
 Prepare for the partial exam.
 Deadline until 07.04.2021 for making a PR on GitHub with the extra problem.
 
+#### Typical flow during the partial exam
+
+1. Take a photo with your work
+2. Transfer the photo via GoogleDrive/WhatsApp/Email/any other online service.
+3. Paste the photo in your "partial" folder
+4. git add .
+5. git commit -m "solution for exercise x, y, z"
+6. git push
+
 ## Grading
 
 There will be 2 laboratory tests, one about Data Structures and one about Algorithms.
