@@ -7,30 +7,55 @@
 typedef struct node_type
 {
     char name[100];
+
     struct node_type *next;
 } NodeT;
 
 NodeT *hashTable[B];
 
-NodeT *createNode (char *array)
+NodeT *createNode (char name[])
 {
-    NodeT *p = (NodeT*) malloc (sizeof(NodeT));
-    strcpy(p->name, &array);
+    NodeT *p = (NodeT*) malloc(sizeof(NodeT));
+    strcpy(p->name, name);
     p->next = NULL;
     return p;
 }
 
-int hashFunction(char *array, int lenght)
+int hashFunction (char name[], int lenght)
 {
-    int i;
-    int a = 0;
+    int a = 0, i;
     for (i = 0; i < lenght; i++) {
-        a += *(array + i);              /// a will be sum of all ASCII codes
+        a += name[i];
     }
-    printf("%d\n", a % B);
 
     return (a % B);
+}
 
+int findName (NodeT *header, char name[])
+{
+    NodeT *p = header;
+    while (p != NULL) {
+        if ( !strcmp(p->name, name) ) {
+            return 1;
+        }
+        p = p->next;
+    }
+    return 0;
+}
+
+void deleteName (NodeT *header, char name[])
+{
+    NodeT *p = header;
+    while ( strcmp(p->name, name) ) {
+        p = p->next;
+    }
+    NodeT *q = p;
+    while ( q->next != NULL ) {
+        q = q->next;
+    }
+
+    strcpy(p->name, q->name);
+    free(q);
 }
 
 int main(int argc, char *argv[])
@@ -39,63 +64,64 @@ int main(int argc, char *argv[])
     FILE *fileO = fopen(argv[2], "w");
 
     char c;
-    int countLines = 0;
+    char command;
+    char name[100];
+    int n = 0, i, x = 0, hash;
 
-    for (;;) {
+    while (c != EOF) {
         c = fgetc(fileI);
-        if (c == EOF) {
-            countLines++;
-            break;
-        }
         if(c == '\n') {
-            countLines++;
+            n++;
         }
     }
     rewind(fileI);
 
-    char array[100];
-    int i;
-    int aux;
-    char *p;
+    c = 'z';
+    for (i = 0; i < n; i++) {
+        command = fgetc(fileI);
+        fprintf(fileO, "%c : ", command);
+        x = 0;
+        while (c != '\n') {
+            c = fgetc(fileI);
+            name[x] = c;
+            x++;
+        }
+        x--;            /// x is now the lenght of the name
+        name[x] = '\0';
+        c = 'z';        /// c needs to be different from '\n'
 
-    for (i = 0; i < countLines; i++) {
-        fgets(array, 255, fileI);
+        hash = hashFunction(name, x);
+        printf("%d\n", hash);
 
-        c = array[0];
-        fprintf(fileO, "%c : ", c);
-        p = &array[1];
-
-        switch(c) {
-
-        case 'i' :
-            aux = hashFunction(p, strlen(array) - 2);
-            if (hashTable[aux] == NULL) {
-                hashTable[aux] = createNode(p);
+        if (command == 'i') {
+            if (hashTable[hash] == NULL) {
+                hashTable[hash] = createNode(name);
             }
             else {
-                NodeT *q = hashTable[aux];
-                while(q->next != NULL) {
+                NodeT* q = hashTable[hash];
+                while (q->next != NULL) {
                     q = q->next;
                 }
-                q->next = createNode(p);
+                q->next = createNode(name);
             }
-            fprintf(fileO, "name was inserted\n");
-            break;
-
-        case 'd' :
-            break;
-
-        case 'f' :
-
-            break;
-
-        default :
-            fprintf(fileO, "error! unknown comand");
-
+            fprintf(fileO, "inserted %s\n", name);
         }
-    }
+        else if (command == 'f') {
+            if (findName(hashTable[hash], name)) {
+                fprintf(fileO, "yes : index = %d\n", hash);
+            }
+            else {
+                fprintf(fileO, "no\n");
+            }
+        }
+        else if (command == 'd') {
+            deleteName(hashTable[hash], name);
+            fprintf(fileO, "deleted %s\n", name);
+        }
+        else {
+            fprintf(fileO, "error! command unknown\n");
+        }
 
-    printf("%s", hashTable[1]->name);       /// i can't figure out what i'm doing wrong
-                                            /// i'll try to figure out until tomorrow
+    }
     return 0;
 }
