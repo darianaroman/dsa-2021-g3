@@ -1,5 +1,5 @@
-# Lab X
+# Lab 07
 
-> Edit this file and describe in a few words what you've done in this lab.
-
+>Learned about graphs, how to implement them and how to traverse them using depth first search and breadth first search.
+>Solved the extra assignment. I think I can do it faster but I didn't have time.
 
