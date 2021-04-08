@@ -1,5 +1,5 @@
-# Lab X
+# Lab 8
 
-> Edit this file and describe in a few words what you've done in this lab.
+> In this Lab I have learned about greedy algorithms and solved the mandatory problem.
 
 
