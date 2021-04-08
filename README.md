@@ -41,8 +41,17 @@ Deadline until 31.03.2021, 20:00 for making a PR on GitHub with the mandatory pr
 
 ### Lab07 Graphs
 
-Prepare for the partial exam.
 Deadline until 07.04.2021 for making a PR on GitHub with the extra problem.
+
+### Lab08 Greedy algorithms
+
+Prepare for the partial exam which you'll take on 15 apr at 17:00.
+Deadline until 14.04.2021 for making a PR on GitHub with the following problem:
+
+You are given a vulgar fraction, let's say 5/8. Find a method to write the fraction as a sum of unit fractions and implement it in C.
+
+In: 5/8
+Out: 1/2 + 1/8
 
 #### Typical flow during the partial exam
 
