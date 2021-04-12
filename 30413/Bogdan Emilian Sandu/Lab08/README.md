@@ -1,5 +1,6 @@
-# Lab X
+# Lab 08
 
-> Edit this file and describe in a few words what you've done in this lab.
+> Learned about greedy algorithms and also about egyptian fractions.
+> Solved mandatory assignment.
 
 
