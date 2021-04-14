@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct node
+typedef struct node_type
 {
     int apparitions;
     char word[20];
-    struct node *next;
-    struct node *prev;
+    struct node_type *next;
+    struct node_type *prev;
 }NodeT;
 
 typedef struct
@@ -17,79 +17,131 @@ typedef struct
     NodeT *last;
 }ListT;
 
-ListT *createEmptyDLL()
+ListT *createEmptyDLList()
 {
     ListT *listPtr = (ListT*)malloc(sizeof(ListT));
-    if(listPtr!=NULL)
+    if(listPtr)
     {
-        listPtr->count=0;
-        listPtr->first=listPtr->last=NULL;
+        listPtr->count = 0;
+        listPtr->first = NULL;
+        listPtr->last = NULL;
+        return listPtr;
     }
-    return listPtr;
-}
-
-int isEmpty(ListT *listPtr)
-{
-    if(listPtr->first==NULL)
-        return 1;
+    printf("Not enough memory for creating the list");
     return 0;
 }
 
-void insertAtRear(ListT *listPtr,char *word)
+NodeT *createNode(char *word,ListT *listPtr)
 {
     NodeT *p = (NodeT*)malloc(sizeof(NodeT));
-    if(p!=NULL)
+    if(listPtr)
     {
-        p->apparitions=1;
-        strcpy(p->word,word);
-        p->prev=p->next=NULL;
-    }
-    if(listPtr!=NULL)
-    {
-        if(isEmpty(listPtr)==1)
+        if(p)
         {
-            listPtr->first=listPtr->last=p;
-            p->prev=p->next=NULL;
-        }
-        else
-        {
-            listPtr->last->next = p;
-            p->prev = listPtr->last;
-            listPtr->last = p;
+            p->apparitions = 1;
+            strcpy(p->word,word);
             p->next = NULL;
+            p->prev = NULL;
+            return p;
         }
-        listPtr->count++;
+        printf("Not enough memory for creating the node");
+        exit(1);
+
     }
-    else
+    printf("The list is not created");
+    return 0;
+}
+
+void sortList(ListT *listPtr)
+{
+    if(listPtr->count==0)
     {
-        printf("Couldn't insert at rear");
-        exit(-1);
+        printf("Can't sort. List empty");
+        return;
+    }
+    if(listPtr->count==1)
+    {
+        printf("Only 1 element in list.Nothing to sort");
+        return;
+    }
+    NodeT *p1 = listPtr->first;
+    NodeT *p2;
+    while(p1->next != NULL)
+    {
+        p2=p1->next;
+        while(p2->next!=NULL)
+        {
+            if (stricmp(p1->word, p2->word) > 0)
+            {
+                char word_1[20], word_2[20];
+                int apparitions1, apparitions2;
+                apparitions1 = p1->apparitions;
+                apparitions2 = p2->apparitions;
+                strcpy(word_1, p1->word);
+                strcpy(word_2, p2->word);
+                p1->apparitions = apparitions2;
+                strcpy(p1->word, word_2);
+                p2->apparitions = apparitions1;
+                strcpy(p2->word, word_1);
+            }
+            p2 = p2->next;
+        }
+        p1 = p1->next;
     }
 }
 
-NodeT *findWord(ListT *listPtr,char *givenWord)
+NodeT *find(char *givenWord,ListT *listPtr)
 {
-    NodeT *p;
-    p=listPtr->first;
+    NodeT *p = listPtr->first;
     while(p!=NULL)
     {
-        if (strcmp(p->word, givenWord) == 0)
+        if(stricmp(p->word,givenWord)==0)
             return p;
-        else
-            p = p->next;
+        p=p->next;
     }
     return NULL;
 }
 
-void swap(NodeT*x, NodeT*y)
+void insertAtRear(char *word,ListT *listPtr)
 {
-    NodeT *aux;
-    aux->apparitions=x->apparitions;
-    strcpy(aux->word,x->word);
-    x->apparitions=y->apparitions;
-    strcpy(x->word,y->word);
-    y->apparitions=aux->apparitions;
-    strcpy(y->word,aux->word);
+    NodeT *p = createNode(word,listPtr);
+    if(p)
+    {
+        NodeT *p2 = find(word,listPtr);
+        if(p2==NULL)
+        {
+            p->next = NULL;
+            if (listPtr->count == 0)
+            {
+                listPtr->first = p;
+                listPtr->last = p;
+            }
+            else
+            {
+                listPtr->last->next = p;
+                p->prev = listPtr->first;
+                listPtr->last = p;
+            }
+            listPtr->count++;
+        }
+        else
+        {
+            p2->apparitions++;
+            free(p);
+        }
+    }
+    else
+        printf("Node not inserted");
+}
+
+void printList(ListT *listPtr)
+{
+    NodeT *p = listPtr -> first;
+    while(p!=NULL)
+    {
+        printf("%s:%d\n", p->word, p->apparitions);
+        p = p->next;
+    }
 }
 
 void purge(ListT *listPtr)
@@ -103,74 +155,24 @@ void purge(ListT *listPtr)
     }
     listPtr->last=NULL;
     listPtr->count=0;
+    free(listPtr);
 }
 
-void sort(ListT *listPtr)
+int main()
 {
-    NodeT *p1;
-    NodeT *p2;
-    p1=listPtr->first;
-    x:   p2=p1->next;
-    while(p2->next!=NULL)
+    FILE *f = fopen("input.txt", "r");
+    if(f == NULL)
     {
-        if(stricmp(p1->word,p2->word)<0)
-            swap(p1,p2);
-        p2=p2->next;
+        printf("File not opened\n");
     }
-    p1=p1->next;
-    if(p1->next->next!=NULL)
-        goto x;
-}
-
-void print(ListT *listPtr,FILE *g)
-{
-    NodeT *p = listPtr ->first;
-    while(p->next!=NULL)
+    char line[20];
+    ListT *listPtr = createEmptyDLList();
+    while(fscanf(f,"%s",line) != EOF)
     {
-        fprintf(g,"%s:%d\n",p->word,p->apparitions);
-        p=p->next;
+        insertAtRear(line,listPtr);
     }
-    fprintf(g,"\n");
-    fprintf(g,"\n");
-}
-
-void printInverse(ListT *listPtr,FILE *g)
-{
-    NodeT *p = listPtr ->last;
-    while(p->prev!=NULL)
-    {
-        fprintf(g,"%s:%d\n",p->word,p->apparitions);
-        p=p->prev;
-    }
-}
-
-int main(int *argc, char *argv[])
-{
-    char s[100];
-    FILE *f = fopen(argv[1],"r");
-    FILE *g = fopen(argv[2],"w");
-    ListT *listPtr = createEmptyDLL();
-    while(fscanf(f,"%s",s)==1)
-    {
-        if(findWord(listPtr,s)!=NULL)
-            findWord(listPtr,s)->apparitions++;
-        else
-        {
-            insertAtRear(listPtr,s);
-            listPtr->count++;
-        }
-    }
-    sort(listPtr);
-    print(listPtr,g);
-    printInverse(listPtr,g);
+    sortList(listPtr);
+    printList(listPtr);
     purge(listPtr);
     return 0;
 }
-//Process finished with exit code -1073741819 (0xC0000005)
-//I have searched this code on the internet and there it says that
-//it may be a pointer that has been overwritten or that i have been
-//adressing something outside of allowed boundaries
-//"In that case you point to a piece of memory that has not been allocated
-// to your process and thus does and should generate access violation."
-// still, i couldn't identify the problem. My guess is that the problem is
-//at the function "swap" or "sort"
