@@ -38,10 +38,10 @@ int main(int argc, char *argv[]) {
     i = 0;
     input = fopen(argv[1],"r");
     fscanf(input,"%d",&nr);
-    while (fscanf(input,"%d",&d) == 1){
-        nr++;
-    }
-    fseek(input,0,SEEK_SET);
+    //while (fscanf(input,"%d",&d) == 1){
+    //    nr++;
+    //}
+    //fseek(input,0,SEEK_SET);
     int array[nr];
     while (fscanf(input,"%d",&d) == 1){
         array[i] = d;
