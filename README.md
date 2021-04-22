@@ -53,6 +53,13 @@ You are given a vulgar fraction, let's say 5/8. Find a method to write the fract
 In: 5/8
 Out: 1/2 + 1/8
 
+### Lab09 Divide et impera
+
+Solve problem 9.3.1.
+Deadline until 28.04.2021, 20:00 for making a PR on GitHub with the mandatory problem.
+
+Extra problem: Towers of Hanoi, 9.3.4. Same deadline.
+
 #### Typical flow during the partial exam
 
 1. Take a photo with your work

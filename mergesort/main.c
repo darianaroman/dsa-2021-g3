@@ -12,13 +12,11 @@ void printVector(int n) {
     }
 }
 
-void merge(int left, int mid, int right) {
+void combine(int left, int mid, int right) {
     int i = left;
     int j = mid + 1;
     int B[MAXN];
-
     int k = left;
-
 
     while(i <= mid && j <= right) {
         if(A[i] <= A[j]) {
@@ -28,36 +26,38 @@ void merge(int left, int mid, int right) {
             B[k] = A[j];
             j++;
         }
-        k++;
-    }
-    int l = 0;
 
-    for(l = i; l <= mid; l++) {
-        B[k] = A[l];
         k++;
     }
 
-    for(l = j; l <= right; l++) {
-        B[k] = A[l];
+    int v = 0;
+
+    for(v = i; v <= mid; v++) {
+        B[k] = A[v];
         k++;
     }
 
-    for(l = left; l <= right; l++) {
-        A[l] = B[l];
+    for(v = j; v <= right; v++) {
+        B[k] = A[v];
+        k++;
     }
+
+    for(v = left; v <= right; v++) {
+        A[v] = B[v];
+    }
+
 }
 
 void mergeSort(int left, int right) {
 
     if(left < right) {
-        int mid = (left + right)/2;
+        int mid = (left + right) / 2;
 
         mergeSort(left, mid);
         mergeSort(mid + 1, right);
 
-        merge(left, mid, right);
+        combine(left, mid, right);
     }
-
 }
 
 int main()
