@@ -1,5 +1,9 @@
-# Lab X
+# Lab 08
 
-> Edit this file and describe in a few words what you've done in this lab.
+> Greedy algorithms
+> - are great for easy fast results even tho we might not reach all solutions.
+
+> problem for this lab is solved in 0(1) and also represents the optimal solution
+
 
 
