@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+int Ceil(float n)
+{
+    if((int)n!=n)
+    return (int) n +1;
+    else return n;
+}
+
+
+int main()
+{
+    float n;
+    float a,b;
+    printf("Introduce the fraction: ");
+    scanf("%f",&a);
+    printf("/");
+    scanf("%f",&b);
+    n=a/b;
+    float aux;
+    printf("= ");
+    int i=0;
+    while(n>=0.00001)
+    {
+
+        aux=Ceil(1/n);
+        n=n-(1/aux);
+        if(i>0)
+            printf("+ ");
+
+        printf("1/%d ",(int)aux);
+        i++;
+
+
+    }
+    return 0;
+}
