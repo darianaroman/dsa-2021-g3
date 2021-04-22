@@ -1,5 +1,7 @@
-# Lab X
+# Lab 09
 
-> Edit this file and describe in a few words what you've done in this lab.
+> Learned about divide et impera. 
+> Coded together merge sort.
+> Solved the mandatory problem.
 
 
