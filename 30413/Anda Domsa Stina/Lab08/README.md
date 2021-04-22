@@ -1,5 +1,5 @@
-# Lab X
+# Lab 
 
-> Edit this file and describe in a few words what you've done in this lab.
+> In this lab we discussed about greedy algotithms and I solved problems b and c.
 
 
