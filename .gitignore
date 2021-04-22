@@ -12,6 +12,7 @@
 # generated directories
 bin/
 obj/
+*.cbp
 
 # Precompiled Headers
 *.gch

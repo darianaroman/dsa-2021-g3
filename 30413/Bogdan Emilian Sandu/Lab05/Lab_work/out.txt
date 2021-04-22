@@ -1,0 +1,8 @@
+B A F D 
+D A B F 
+D A F 
+A D F 
+Not found
+F A 
+F
+A

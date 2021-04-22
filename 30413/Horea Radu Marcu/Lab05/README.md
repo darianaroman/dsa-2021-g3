@@ -1,5 +1,5 @@
-# Lab X
+# Lab 5
 
-> Edit this file and describe in a few words what you've done in this lab.
+> In this Lab I have learned about binary search trees and completed the mandatory problem.
 
 

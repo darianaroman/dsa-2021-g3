@@ -1,0 +1,15 @@
+i Jakab Sarolta
+i Nagy Leviii
+i Gyik Dorottya
+i Bogdan Agnes
+f Nagy Leviii
+d Gyik Dorottya
+d Bogdan Agnes
+l
+i Octavian Goga
+f Octavian Goga
+l
+f Jakab Sarolta
+l
+d Octavian Goga
+l

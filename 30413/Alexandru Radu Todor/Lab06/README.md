@@ -1,5 +1,6 @@
-# Lab X
+# Lab 6
 
-> Edit this file and describe in a few words what you've done in this lab.
+- Learned about Hash Tables
+- Solved Mandatory Problem
 
 

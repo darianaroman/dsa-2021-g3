@@ -1,5 +1,6 @@
-# Lab X
+# Lab 5
 
-> Edit this file and describe in a few words what you've done in this lab.
+> During this lab I've learned how to work with basic functions on binary search trees. 
+> In the second part I've learned how to write clean code so that anybody who's reviewing my code can understand what is there.
 
 

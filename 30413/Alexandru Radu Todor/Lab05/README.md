@@ -1,5 +1,7 @@
-# Lab X
+# Lab 5
 
-> Edit this file and describe in a few words what you've done in this lab.
+- Learned about Binary Search Trees
+- Learned how to use CLion
+- Solved Mandatory Problem
 
 

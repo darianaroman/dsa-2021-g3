@@ -72,6 +72,8 @@ NodeT *createBinTree(int branch,NodeT *parent)
 
 int nrLeaves(NodeT *root)
 {
+    if(root == 0)
+        return 0;
     if(root->left==NULL && root->right==NULL)
         return 1;
     return nrLeaves(root->left) + nrLeaves(root->right);

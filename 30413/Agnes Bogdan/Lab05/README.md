@@ -1,5 +1,7 @@
-# Lab X
+# Lab 05
 
-> Edit this file and describe in a few words what you've done in this lab.
+> First I created a binary tree, with the input method similar to which we used before. Then I read the instructions
+into a string. By analizing the first and second letter from the instruction I executed the necessary operations, as the
+excersize indicated.
 
 

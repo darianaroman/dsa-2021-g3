@@ -1,5 +1,6 @@
-# Lab X
+# Lab 06
 
-> Edit this file and describe in a few words what you've done in this lab.
+> In this lab I have learned about Hash Tables and how they work.
+By solving the mandatory task i've worked with collision resolution by chaining method, which made me understand this method better.
 
 

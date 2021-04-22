@@ -1,0 +1,26 @@
+Node B inserted successfully
+Node C inserted successfully
+Node D inserted successfully
+Node A inserted successfully
+
+Minimum is: A
+
+Maximum is: D
+
+Inorder listing:
+  A
+ B
+  C
+   D
+
+Postorder listing:
+  A
+   D
+  C
+ B
+
+Preorder listing:
+ B
+  A
+  C
+   D

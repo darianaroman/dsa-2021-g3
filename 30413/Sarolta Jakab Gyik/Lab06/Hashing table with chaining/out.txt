@@ -1,0 +1,57 @@
+
+Jakab Sarolta
+New record inserted
+
+Nagy Leviii
+New record inserted
+
+Gyik Dorottya
+New record inserted
+
+Bogdan Agnes
+New record inserted
+
+Nagy Leviii yes 0
+
+Gyik Dorottya node is deleted
+
+Bogdan Agnes node is deleted
+
+Bucket for hash value 9
+Nagy Leviii
+
+Bucket for hash value 24
+Jakab Sarolta
+
+Goga Catalin
+New record inserted
+
+Goga Catalin yes 0
+
+Bucket for hash value 7
+Goga Catalin
+
+Bucket for hash value 9
+Nagy Leviii
+
+Bucket for hash value 24
+Jakab Sarolta
+
+Jakab Sarolta yes 0
+
+Bucket for hash value 7
+Goga Catalin
+
+Bucket for hash value 9
+Nagy Leviii
+
+Bucket for hash value 24
+Jakab Sarolta
+
+Goga Catalin node is deleted
+
+Bucket for hash value 9
+Nagy Leviii
+
+Bucket for hash value 24
+Jakab Sarolta
