@@ -1,5 +1,3 @@
-# Lab X
+# Lab 09
 
-> Edit this file and describe in a few words what you've done in this lab.
-
-
+Working on divide et impera algorithms
