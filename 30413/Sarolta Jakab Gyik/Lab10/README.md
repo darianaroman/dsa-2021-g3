@@ -1,5 +1,6 @@
-# Lab X
+# Lab 10
 
-> Edit this file and describe in a few words what you've done in this lab.
+> I used dynamic allocation for matrices and also dynamic programming method. I hope
+everything is in order.
 
 
