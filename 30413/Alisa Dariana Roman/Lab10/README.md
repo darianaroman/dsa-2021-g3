@@ -1,5 +1,5 @@
-# Lab X
+# Lab 10
 
-> Edit this file and describe in a few words what you've done in this lab.
+We discussed about dynamic programming, learned to optimize Fibonacci recursive algorithm and talked about minimum path algorithm
 
 
