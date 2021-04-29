@@ -1,5 +1,6 @@
-# Lab X
+# Lab 10
 
-> Edit this file and describe in a few words what you've done in this lab.
+I wrote a function to return the minimum from three numbers. also I created an auxiliar matrix which has the values of the minimum path from the 
+position with index "00".
 
 
