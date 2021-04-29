@@ -1,5 +1,5 @@
-# Lab X
+# Lab 07
 
-> Edit this file and describe in a few words what you've done in this lab.
-
+During the lab, I learned about graph, the ways in which they are represented (and why each one could be useful) and
+also about traversals (BFS and DFS).
 

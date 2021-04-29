@@ -4,10 +4,70 @@ Data Structures and Algorithms lab repository
 
 ## Lab Structure
 
-### Lab02
+### Lab02 SLL
+
+⚠️⚠️⚠️ IMPORTANT ⚠️⚠️⚠️
+
+Pull Requests name must follow the following pattern: Lab## \<nume\> \<prenume\>
+
+Ex1: Lab02 Salau Bogdan
+
+Ex2: Lab02 Salau Bogdan Extra
 
 Deadline until 28.02.2021, 20:00 for making a PR on GitHub with what you've worked.
 Deadline until 4.03.2021, 8:00 for making a PR on GitHub with the extra assignment if you finished the basic mandatory problems.
+
+### Lab03 DLL
+
+Only problem 3.2 is mandatory.
+
+Deadline until 7.03.2021, 20:00 for making a PR on GitHub with what you've worked.
+Deadline until 11.03.2021, 8:00 for making a PR on GitHub with the extra assignment if you finished the basic mandatory problems.
+
+### Lab04 Binary Trees
+
+Solve problem 4.2.
+Deadline until 17.03.2021, 20:00 for making a PR on GitHub with the mandatory problems and extra assignment if you finished the mandatory problems.
+
+### Lab05 Binary Search Trees
+
+Solve problem 5.2.
+Deadline until 24.03.2021, 20:00 for making a PR on GitHub with the mandatory problems and extra assignment if you finished the mandatory problems.
+
+### Lab06 Hash Tables
+
+Solve problem 6.3.1.
+Deadline until 31.03.2021, 20:00 for making a PR on GitHub with the mandatory problem.
+
+### Lab07 Graphs
+
+Deadline until 07.04.2021 for making a PR on GitHub with the extra problem.
+
+### Lab08 Greedy algorithms
+
+Prepare for the partial exam which you'll take on 15 apr at 17:00.
+Deadline until 14.04.2021 for making a PR on GitHub with the following problem:
+
+You are given a vulgar fraction, let's say 5/8. Find a method to write the fraction as a sum of unit fractions and implement it in C.
+
+In: 5/8
+Out: 1/2 + 1/8
+
+### Lab09 Divide et impera
+
+Solve problem 9.3.1.
+Deadline until 28.04.2021, 20:00 for making a PR on GitHub with the mandatory problem.
+
+Extra problem: Towers of Hanoi, 9.3.4. Same deadline.
+
+#### Typical flow during the partial exam
+
+1. Take a photo with your work
+2. Transfer the photo via GoogleDrive/WhatsApp/Email/any other online service.
+3. Paste the photo in your "partial" folder
+4. git add .
+5. git commit -m "solution for exercise x, y, z"
+6. git push
 
 ## Grading
 

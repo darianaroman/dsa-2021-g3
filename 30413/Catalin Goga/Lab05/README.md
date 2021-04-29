@@ -1,5 +1,7 @@
-# Lab X
+# Lab 05 <Goga> <Catalin>
 
-> Edit this file and describe in a few words what you've done in this lab.
+> I uploaded the first problem but it doesn't work for now.
+> Mandatory problem is now working
+> I uploaded the extra problem
 
 

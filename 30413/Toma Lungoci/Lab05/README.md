@@ -1,5 +1,6 @@
-# Lab X
+# Lab 05
 
-> Edit this file and describe in a few words what you've done in this lab.
+- Discussed about Binary Search Trees and the main operations performed on them. Started working on the problems from the pdf.
+- We've done some code cleanup and you have showed us some universal conentions for writing readable understandable code.
 
 

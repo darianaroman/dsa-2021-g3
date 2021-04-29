@@ -1,0 +1,7 @@
+
+PRE: FBADCEG
+found it at address: 4591664
+Minimum is: A
+Minimum is: G
+POST: BADCEF
+IN: BDCEF

@@ -1,5 +1,6 @@
-# Lab X
+# Lab 6
 
-> Edit this file and describe in a few words what you've done in this lab.
+> In this lab we learned about hash tables and than we solved a problem with binary trees.
+6.3.1 I used the first letter of the name for the hash function.
 
 

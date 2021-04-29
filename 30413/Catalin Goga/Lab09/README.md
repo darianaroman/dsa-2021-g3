@@ -1,5 +1,6 @@
-# Lab X
+# Lab 09 Goga Catalin
 
-> Edit this file and describe in a few words what you've done in this lab.
+> Added the first problem
+> Did the commit again for Lab09
 
 
