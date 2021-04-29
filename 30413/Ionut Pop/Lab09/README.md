@@ -1,5 +1,5 @@
-# Lab X
+# Lab 9
 
-> Edit this file and describe in a few words what you've done in this lab.
-
-
+In this lab ve've discussed about 'Divide et Impera' algorithm
+	-main ideea: split the program into smaller problems and add the results gradually afterwards
+	-merge sort algorithm
