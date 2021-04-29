@@ -1,5 +1,5 @@
-# Lab X
+# Lab 09
 
-> Edit this file and describe in a few words what you've done in this lab.
+During the lab we studied the Divide et impera strategy and have seen an example in which it was used, the merge sort.
 
 
