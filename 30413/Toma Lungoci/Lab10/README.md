@@ -1,5 +1,4 @@
-# Lab X
-
-> Edit this file and describe in a few words what you've done in this lab.
+# Lab 10
+We've discussed about Dynamic Programming, complexity and trading memory for efficiency
 
 
