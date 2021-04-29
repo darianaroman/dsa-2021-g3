@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int summax=-10000;
+int v[102];
+
+
+void sum(int lBound, int mid, int rBound)
+{
+
+    int i,j;
+     i=lBound;
+     j=rBound;
+
+    int suml=0,sumr=0;
+    while( i<=mid )
+    {
+
+        suml=suml+v[i++];
+        if(suml>=summax)
+        {
+            summax=suml;
+        }
+
+        if(suml<v[i-1])
+        {
+            suml=v[i-1];
+        }
+       // printf("%d\n",summax);
+
+    }
+
+   // printf("sl %d\n",suml);
+
+
+    while(j>= mid+1 )
+    {
+        sumr=sumr+v[j--];
+        if(sumr>=summax)
+        {
+            summax=sumr;
+        }
+
+        if(sumr<v[j+1])
+        {
+            sumr=v[j+1];
+        }
+        //printf("%d\n",summax);
+    }
+
+    //printf("sr %d\n",sumr);
+
+
+    if(summax<suml + sumr)
+    {
+        summax=suml +sumr;
+       // printf("%d\n",summax);
+    }
+
+
+}
+
+void mergeSort(int lBound, int rBound)
+{
+    int mid;
+    mid = ( lBound+ rBound) / 2;
+    if(lBound < rBound)
+    {
+
+        mergeSort(lBound, mid);
+        mergeSort(mid + 1, rBound);
+
+        sum(lBound, mid, rBound);
+    }
+
+
+}
+
+
+
+
+int main(int argv,char **argc)
+{
+    FILE *f=fopen(argc[1],"r");
+    FILE *g=fopen(argc[2],"w");
+    int n;
+    fscanf(f,"%d",&n);
+    int i;
+    for(i=0;i<n;i++)
+        fscanf(f,"%d",&v[i]);
+
+    mergeSort(0,n-1);
+    fprintf(g,"%d",summax);
+    return 0;
+}

@@ -1,5 +1,5 @@
-# Lab X
+# Lab 09
 
-> Edit this file and describe in a few words what you've done in this lab.
+> In this lab we've learned about the divide and conquer method of approaching a problem
 
 
