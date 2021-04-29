@@ -60,6 +60,11 @@ Deadline until 28.04.2021, 20:00 for making a PR on GitHub with the mandatory pr
 
 Extra problem: Towers of Hanoi, 9.3.4. Same deadline.
 
+### Lab10 Dynamic Programming
+
+Solve problem 10.3.4.
+Deadline until 13.05.2021, 20:00 for making a PR on GitHub with the mandatory problem.
+
 #### Typical flow during the partial exam
 
 1. Take a photo with your work
