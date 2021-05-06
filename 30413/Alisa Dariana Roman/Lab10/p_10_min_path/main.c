@@ -31,14 +31,28 @@ int smallest(int x, int y, int z)
     return c;
 }
 
-int minPath (int i, int j)
+int minPath (int dim1, int dim2)
 {
-    if (minM[i][j] == 0) {
-        minM[i][j] = M[i][j] + smallest(minPath(i-1, j), minPath(i, j-1), minPath(i-1, j-1));
-    }
-    return minM[i][j];
-}
+  int i, j;
+  int sum = 0;
+  for (j = 0; j < dim2; j++) {
+      sum = sum + M[0][j];
+      minM[0][j] = sum;
+  }
 
+  sum = 0;
+  for (i = 0; i < dim1; i++) {
+      sum = sum + M[i][0];
+      minM[i][0] = sum;
+  }
+
+  for (i = 1; i < dim1; i++) {
+    for (j = 1; j < dim2; j++) {
+      minM[i][j] = M[i][j] + smallest(minM[i-1][j], minM[i][j-1], minM[i-1][j-1]);
+    }
+  }
+  return minM[dim1-1][dim2-1];
+}
 
 int main(int argc, char *argv[])
 {
@@ -50,23 +64,9 @@ int main(int argc, char *argv[])
 
     printMatrix(M, 3, 4);
     printf("\n");
-    int i, j;
 
-    int sum = 0;
-    for (j = 0; j < dim2; j++) {
-        sum = sum + M[0][j];
-        minM[0][j] = sum;
-    }
-
-    sum = 0;
-    for (i = 0; i < dim1; i++) {
-        sum = sum + M[i][0];
-        minM[i][0] = sum;
-    }
-
-    fprintf(fileO, "sum of minimum path elements is %d\n", minPath(2, 3));  /// here i needed to put dim1 - 1 and dim2 - 1 so the alg doesn't go over the limits
+    fprintf(fileO, "sum of minimum path elements is %d\n", minPath(3, 4));
     printMatrix(minM, 3, 4);
-
 
     return 0;
 }
