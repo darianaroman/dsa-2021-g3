@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <limits.h>
 
 int gcdSpecial(int a, int b, int *x, int *y)
 {
@@ -30,13 +30,13 @@ int gcd(int n1, int n2){
     return n1;
 }
 
-int bezut(int *vector, int length, int C) {  // za most important function
+/*int bezut(int *vector, int length, int C) {  // za most important function
     for (int i = 0; i < length - 1; i++)
         for (int j = i + 1; j < length; j++)
             if (C % gcd(vector[i], vector[j]) == 0)
                 return 1;
     return 0;
-}
+}*/
 
 int maxPasi(int A, int B, int *vector,int length){
     int C;
@@ -85,39 +85,50 @@ int min(int a, int b){
 
 void function(int *dp,int *vector, int length, int *bezutP, int nrPasi, int poz){
     if(nrPasi > *bezutP) {
-        dp[poz] = *bezutP;
+        dp[poz] = INT_MAX;
         return;
     }
     else {
-        int minimum = dp[abs(poz - vector[0])];
+        //int minimum = dp[abs(poz - vector[0])];
+        int minimum = INT_MAX;
         for (int i = 0; i < length; i++) {
             if (dp[abs(poz - vector[i])] == INT_MAX) {
                 function(dp, vector, length, bezutP, ++nrPasi, abs(poz - vector[i]));
             } else
                 minimum = min(minimum, dp[abs(poz - vector[i])]);
         }
-        dp[poz] = minimum + 1;
+        if(minimum == INT_MAX)
+            dp[poz] = INT_MAX;
+        else
+            dp[poz] = minimum + 1;
     }
 }
 
 void minOpDP(int A, int B,int *vector,int length){
     int max;
     int bezutP = maxPasi(A,B,vector,length);
-    max = nrMaxVector(vector,length);
+    if(bezutP == -1)
+    {
+        printf("-1");
+        return;
+    }
+    max = nrMaxVector(vector,length) + 1;
     if (abs(A - B) > max)
         max = abs(A - B) + 1;
     int dp[max];
     for(int i = 0; i < max; i++)
         dp[i] = INT_MAX;
     dp[0] = 0;
-    for( int i = 1; i < length; i++)
+    for( int i = 0; i < length; i++)
         dp[vector[i]] = 1;
     for( int i = 1; i < max; i++){
-        if(dp[i] == 1) continue;
-        function(dp,vector,length,&bezutP,0,i);
+        if(dp[i] == 1)
+            continue;
+        else
+            function(dp,vector,length,&bezutP,0,i);
     }
-    //for(int i = 0; i < max; i++)
-        //printf("%d ",dp[i]);
+   //for(int i = 0; i < max; i++)
+    //printf("%d %d \n",i,dp[i]);
     printf("%d \n",dp[abs(A - B)]);
 }
 
