@@ -33,37 +33,87 @@ int min(int a, int b)
 }
 int turnNumber(int a, int b, int *v, int n)
 {
-    int steps = 0;
-    while(a != b)
+    int steps = 0, minim = INT_MAX, c, d;
+    while(n > 1)
     {
+        //printf("\nn=%d\n", n);
+        c = a;
+        d = b;
+        steps = 0;
+        while(c != d)
+        {
+            int i = 0;
+            while(v[i] <= (max(c, d) - min(c, d)) && (i < n))
+            {
+                i++;
+            }
+            if(c < d && i == 0)
+            {
+                c = c + v[i];
+                //printf("plus v[%d] = %d\n", i, v[i]);
+            }
+            else if(c < d)
+            {
+                c = c + v[i-1];
+                //printf("plus v[%d] = %d\n", i-1, v[i-1]);
+            }
+            else if(i == 0)
+            {
+                c = c - v[i];
+                //printf("minus v[%d] = %d\n", i, v[i]);
+            }
+            else
+            {
+                c = c - v[i-1];
+                //printf("minus v[%d] = %d\n", i-1, v[i-1]);
+            }
+            steps++;
+        }
+        if(steps < minim)
+            minim = steps;
         int i = 0;
         while(v[i] <= (max(a, b) - min(a, b)) && (i < n))
         {
             i++;
         }
-        if(a < b && i == 0)
+        n = i - 1;
+        //for(int i = 0; i < n; i++)
+            //printf("%d ", v[i]);
+    }
+
+    return minim;
+}
+int turnNumber2(int a, int b, int *v, int n)
+{
+    int ind = n, minim = INT_MAX, c, d, steps;
+    //printf("\nn=%d\n", n);
+    c = a;
+    d = b;
+    steps = 0;
+    while(c != d)
+    {
+        int i = ind-1;
+        while(v[i] > (max(c, d) - min(c, d)) && (i >= 0))
         {
-            a = a + v[i];
-            ///printf("plus v[%d] = %d\n", i, v[i]);
+            i--;
         }
-        else if(a < b)
+        if((v[i] != (max(c, d) - min(c, d)) && (i != ind-1)) || (i == -1))
+            i++;
+        ind  = i;
+        if(c < d)
         {
-            a = a + v[i-1];
-            ///printf("plus v[%d] = %d\n", i-1, v[i-1]);
-        }
-        else if(i == 0)
-        {
-            a = a - v[i];
-            ///printf("minus v[%d] = %d\n", i, v[i]);
+            c = c + v[i];
+            //printf("plus v[%d] = %d\n", i, v[i]);
         }
         else
         {
-            a = a - v[i-1];
-            ///printf("minus v[%d] = %d\n", i-1, v[i-1]);
+            c = c - v[i];
+            //printf("minus v[%d] = %d\n", i, v[i]);
         }
         steps++;
     }
-    return steps;
+    if(steps < minim)
+        minim = steps;
 }
 int main(int argc, char const *argv[])
 {
@@ -79,10 +129,15 @@ int main(int argc, char const *argv[])
         v = (int*) realloc(v, (n+1) * sizeof(int));
         fscanf(f, "%d", &v[n]);
     }
-    bubblesort(v, n-1);
-    for(int i = 0; i < n-1; i++)
-        printf("%d ", v[i]);
-    printf("\nThe number of steps needed: %d\n", turnNumber(A, B, v, n-1));
+    n--; //because of the new line character at the end of the in.txt file it puts a garbage value on the last position
+    bubblesort(v, n);
+    int min1 = turnNumber(A, B, v, n);
+    printf("\nThe number of steps needed for only + or -: %d\n", min1);
+
+    int min2 = turnNumber2(A, B, v, n);
+    printf("\nThe number of steps needed for + and - simultanously: %d\n", min2);
+
+    printf("\nThe minimum number of steps needed: %d\n", min(min1, min2));
     fclose(f);
     return 0;
 }
