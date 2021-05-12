@@ -1,0 +1,70 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+#include <Windows.h>
+#define MAXN 10
+int x[MAXN];
+int n;         /* chessboard size */
+int solNb;  /* solution number */
+
+void Color(int col) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, col);
+}
+
+void printSolution() {
+    int i;
+    int j;
+    for (i = 1; i <= n; i++) {
+        for (j = 1; j <= n; j++) {
+            if (x[i] == j) {
+                Color(2);
+                printf("%d ", 1);
+            } else {
+                Color(15);
+                printf("%d ", 0);
+            }
+        }
+        printf("\n");
+    }
+}
+
+/* function which checks the continuation conditions */
+int phi(int k)
+{
+  for (int p = 1; p <= k - 1; p++)
+    if (x[k] == x[p] ||
+         abs(k - p) ==
+         abs(x[k] - x[p]))
+      return FALSE;
+  return TRUE;
+}
+/* find all possible arrangements of $n$ queens on a chessboard such that no queen
+   threatens another */
+void recQueens(int k)
+{
+  for (int j = 1; j <= n; j++)
+  {
+    x[k] = j;
+    if (phi(k) == TRUE)
+      if (k < n)
+        recQueens(k + 1);
+      else
+      { /* list solution */
+        solNb++;
+        printf("\nSolution %d\n", solNb);
+        printSolution();
+        while ('\n' != getchar());
+      }
+  }
+}
+int main(void)
+{
+  printf("\nNumber of queens=");
+  scanf("%d", &n);
+  while ('\n' != getchar());
+  solNb = 0;
+  recQueens(1);
+  printf("\nEND\n");
+  return 0;
+}

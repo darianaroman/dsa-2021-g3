@@ -65,6 +65,11 @@ Extra problem: Towers of Hanoi, 9.3.4. Same deadline.
 Solve problem 10.3.4.
 Deadline until 13.05.2021, 20:00 for making a PR on GitHub with the mandatory problem.
 
+### Lab11 Backtracking
+
+Prepare for the partial exam which you'll take on 20 may at 17:00.
+No homework.
+
 #### Typical flow during the partial exam
 
 1. Take a photo with your work
