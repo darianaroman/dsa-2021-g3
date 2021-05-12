@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+#define INT_MAX 10000
+
+// m is size of v array
+int minsteps(int v[], int m, int DIST)
+{
+    // table[i] will be storing the minimum number of steps
+    // required to get to i-DIST value.  So table[2*V] will have result
+    int table[3*DIST+1];
+
+    int i,j,i2;
+    // Initialize all table values as Infinite
+    for ( i=0; i<=3*DIST; i++)
+    {
+        table[i] = INT_MAX;
+    }
+
+
+    table[DIST] = 0; //here we have 0 (starting point) this represents nuber of steps to get to value DIST-DIST=0
+
+    // Compute minimum steps required for all
+    // values from -DIST to 2*DIST
+    for (i=DIST,i2=DIST; i<=2*DIST,i2>=0; i++,i2--)
+    {
+        // Go through all elements of v smaller than i
+
+        for ( j=0; j<m; j++)
+        {
+
+
+
+                if (v[j]  <=i )
+                {
+                    int sub_res = table[i-v[j]];
+                    if (sub_res != INT_MAX && sub_res + 1 < table[i])
+                        table[i] = sub_res + 1;
+                }
+        }
+
+
+        for ( j=0; j<m; j++)
+        {
+
+
+
+                if (v[j]  <=i2 )
+                {
+                    int sub_res = table[i2-v[j]];
+                    if (sub_res != INT_MAX && sub_res + 1 < table[i])
+                        table[i] = sub_res + 1;
+                }
+        }
+
+
+    }
+
+      if(table[DIST]==INT_MAX)
+        return -1;
+
+    return table[2*DIST];
+}
+
+
+int main()
+{
+
+    FILE *f = fopen("in.txt", "r");
+    int A,B,x;
+    int v[102];
+    int m=0;
+    fscanf(f, "%d %d", &A, &B);
+    while(fscanf(f,"%d", &x) == 1)
+    {
+        v[m++] = x;
+        v[m++] = -x;
+    }
+
+
+    int DIST = B-A;
+
+    printf("Minimum operations required is %d",minsteps(v, m, DIST));
+    return 0;
+}
