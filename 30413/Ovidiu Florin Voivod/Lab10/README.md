@@ -1,5 +1,6 @@
-# Lab X
+# Lab 10
 
-> Edit this file and describe in a few words what you've done in this lab.
+> Did the minimum path problem.
+In this lab we've learned about dynammic programming and also about Heuristics concept
 
 
