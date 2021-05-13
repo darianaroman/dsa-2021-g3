@@ -57,3 +57,13 @@
 3. The timer will start at 8:30 for the first semigroup, 10:30 for the second semigroup.
 4. Problem statement will be uploaded in the main git repo, "Contest" folder, when the timer starts. [Link here](https://github.com/bogdansalau/dsa-2021-g3)
 5. You have 1 h to complete the problem.
+6. The results can be invalidated at any time by me, the game master.
+
+Best time: 
+- Maria Gliga Hambert
+- Arpad Alex Lacatus
+- Andrei Ionut Lauran
+- Horea Radu Marcu
+- Ovidiu Florin Voivod
+
+**41 min**
