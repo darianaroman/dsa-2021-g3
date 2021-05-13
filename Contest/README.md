@@ -59,11 +59,20 @@
 5. You have 1 h to complete the problem.
 6. The results can be invalidated at any time by me, the game master.
 
-Best time: 
-- Maria Gliga Hambert
+Best time for no collinearity problem: 
+- Maria Gliga Hambert :crown:
 - Arpad Alex Lacatus
 - Andrei Ionut Lauran
 - Horea Radu Marcu
 - Ovidiu Florin Voivod
 
 **41 min**
+
+Best time for 4-collinearity problem: 
+- Bogdan Emilian Sandu :crown:
+- Teodora Tat
+- Alexandru Lucian Olar
+- Alisa Dariana Roman
+- Matei Radu
+
+**53 min**
