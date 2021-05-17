@@ -94,8 +94,7 @@ Each lab will have proposed problems which you will have to solve and upload it 
 
 ### About tests
 
-* Test format ToBeAnnounced
-* Grades range: 1-10
+* Check "Algorithms exam" and "Data Structures exam" folders to see the format
 * Code does not even compile: 1 (by default, no excuses)
 * Cheating attempts: 1 (by default, no excuses)
 
