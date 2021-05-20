@@ -34,10 +34,10 @@ int computeMinOp(int x, int v[], int n)
 
 int main()
 {
-  int a = 45, b = 97;
-  int v[] = {15, 33, 2, 31, 48, 7, 9, 21, 14, 3, 5, 1};
-  int n = 12;
-  int x = abs(b - a);
+ // int a = 45, b = 97;
+ // int v[] = {15, 33, 2, 31, 48, 7, 9, 21, 14, 3, 5, 1};
+ // int n = 12;
+ // int x = abs(b - a);
 
   // int v[] = {6, 5, 1};
   // int n = 3;
@@ -46,6 +46,10 @@ int main()
  // int v[] = {20, 27, 60};
  // int n = 3;                  /// not working
  // int x = 53;
+
+ int v = {62, 63};
+ int n = 2;
+ int x = 3;
 
   printf("\nmin is %d\n", computeMinOp(x, v, n));
   return 0;
