@@ -1,5 +1,6 @@
-# Lab X
+# Lab 10
 
-> Edit this file and describe in a few words what you've done in this lab.
-
-
+learned about dynamic programming
+	-what is dynamic programming
+	-efficienty (faster but needs more memory)
+discussed about heuristics

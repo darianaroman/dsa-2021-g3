@@ -60,6 +60,16 @@ Deadline until 28.04.2021, 20:00 for making a PR on GitHub with the mandatory pr
 
 Extra problem: Towers of Hanoi, 9.3.4. Same deadline.
 
+### Lab10 Dynamic Programming
+
+Solve problem 10.3.4.
+Deadline until 13.05.2021, 20:00 for making a PR on GitHub with the mandatory problem.
+
+### Lab11 Backtracking
+
+Prepare for the partial exam which you'll take on 20 may at 17:00.
+No homework.
+
 #### Typical flow during the partial exam
 
 1. Take a photo with your work
@@ -84,8 +94,7 @@ Each lab will have proposed problems which you will have to solve and upload it 
 
 ### About tests
 
-* Test format ToBeAnnounced
-* Grades range: 1-10
+* Check "Algorithms exam" and "Data Structures exam" folders to see the format
 * Code does not even compile: 1 (by default, no excuses)
 * Cheating attempts: 1 (by default, no excuses)
 

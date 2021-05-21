@@ -1,5 +1,5 @@
-# Lab X
+# Lab 9
 
-> Edit this file and describe in a few words what you've done in this lab.
+> In this lab we learned about the Divide and Conquer algorithm and also learned how merge sort algorithm works.
 
 

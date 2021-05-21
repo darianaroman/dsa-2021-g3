@@ -1,0 +1,205 @@
+// This finds 4 collinear queens; change "limit" to 3 and "if(checkLines() == 1)" to show solutions that have no collinear queens.
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+#include <Windows.h>
+#define MAXN 10
+
+int x[MAXN];
+int n;         /* chessboard size */
+int solNb;  /* solution number */
+
+int limit = 4;
+
+struct Queen{
+  int row;
+  int col;
+};
+typedef struct Queen Queen;
+
+//This method is used to color the characters
+void Color(int col) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, col);
+}
+
+void printSolution() {
+    int i;
+    int j;
+    for (i = 1; i <= n; i++) {
+        for (j = 1; j <= n; j++) {
+            if (x[i] == j) {
+                Color(2);
+                printf("%d ", 1);
+            } else {
+                Color(15);
+                printf("%d ", 0);
+            }
+        }
+        printf("\n");
+    }
+}
+
+/* function which checks the continuation conditions */
+int phi(int k)
+{
+  for (int p = 1; p <= k - 1; p++)
+    if (x[k] == x[p] ||
+         abs(k - p) ==
+         abs(x[k] - x[p]))
+      return FALSE;
+  return TRUE;
+}
+/* find all possible arrangements of $n$ queens on a chessboard such that no queen
+   threatens another */
+void recQueens(int k)
+{
+  for (int j = 1; j <= n; j++)
+  {
+    x[k] = j;
+    if (phi(k) == TRUE)
+      if (k < n)
+        recQueens(k + 1);
+      else
+      { /* list solution */
+        solNb++;
+        if(checkLines() == 0) {
+            printf("\nSolution %d\n", solNb);
+            printSolution();
+            while ('\n' != getchar());
+        }
+      }
+  }
+}
+
+int lineExists(Queen q, int diffRow, int diffCol) {
+    int queenInRow = 0;
+    int i = q.row;
+    int j = q.col;
+    // Go S - E
+    while(i <= n && j <= n) {
+        if(x[i] == j) {
+            queenInRow++;
+            i += diffRow;
+            j += diffCol;
+        } else break;
+    }
+    if (queenInRow >= limit) {
+             printf("\nS-E Start queen nr %d %d, end queen in line nr %d", q.row, q.col, queenInRow);
+            return 1;
+    }
+
+    queenInRow = 0;
+    i = q.row;
+    j = q.col;
+    // Go N - E
+    while(i >= 1 && j <= n) {
+        if(x[i] == j) {
+            queenInRow++;
+            i -= diffRow;
+            j += diffCol;
+        } else break;
+    }
+    if (queenInRow >= limit) {
+             printf("\nN-E Start queen nr %d %d, end queen in line nr %d", q.row, q.col, queenInRow);
+            return 1;
+    }
+
+    queenInRow = 0;
+    i = q.row;
+    j = q.col;
+    // Go N - W
+    while(i >= 1 && j >= 1) {
+        if(x[i] == j) {
+            queenInRow++;
+            i -= diffRow;
+            j -= diffCol;
+        } else break;
+    }
+    if (queenInRow >= limit) {
+             printf("\nN-W Start queen nr %d %d, end queen in line nr %d", q.row, q.col, queenInRow);
+            return 1;
+    }
+
+    queenInRow = 0;
+    i = q.row;
+    j = q.col;
+    // Go S - W
+    while(i <= n && j >= 1) {
+        if(x[i] == j) {
+            queenInRow++;
+            i += diffRow;
+            j -= diffCol;
+        } else break;
+    }
+    if (queenInRow >= limit) {
+             printf("\nS-W Start queen nr %d %d, end queen in line nr %d", q.row, q.col, queenInRow);
+            return 1;
+    }
+    return 0;
+}
+
+int checkLines() {
+    int i = 0;
+    int j = 0;
+
+    for (i = 1; i <= n - 1; i++) {
+
+        for(j = i + 1; j <= n; j++) {
+            Queen q1;
+            q1.row = i;
+            q1.col = x[i];
+            Queen q2;
+            q2.row = j;
+            q2.col = x[j];
+
+            int diffCol = abs(q1.col - q2.col);
+            int diffRow = abs(q1.row - q2.row);
+            if (lineExists(q1, diffRow, diffCol)) return 0;
+        }
+
+    }
+    return 1;
+}
+
+void test1() {
+  n = 8;
+  x[1] = 5;
+  x[2] = 1;
+  x[3] = 6;
+  x[4] = 0;
+  x[5] = 3;
+  x[6] = 7;
+  x[7] = 4;
+  x[8] = 2;
+}
+
+void all_queens_on_first_column() {
+  n = 8;
+  x[0] = 0;
+  x[1] = 0;
+  x[2] = 0;
+  x[3] = 0;
+  x[4] = 0;
+  x[5] = 0;
+  x[6] = 0;
+  x[7] = 0;
+}
+
+int main(void)
+{
+  n = 8;
+  /*all_queens_on_first_column();
+  int result = checkLines();
+  if(!result) {
+    printf("\n Line found");
+  } else {
+    printf("\n LINE NOT FOUND");
+  }*/
+
+  solNb = 0;
+  recQueens(1);
+  printf("\nEND\n");
+  return 0;
+}

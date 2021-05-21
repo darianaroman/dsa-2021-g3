@@ -1,5 +1,5 @@
-# Lab X
+# Lab 10
 
-> Edit this file and describe in a few words what you've done in this lab.
-
+> We studied dynamic programming, why it's important and the basic implementation. We also discussed a problem 
+and wrote the code for it on our own.
 
